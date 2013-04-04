@@ -8,9 +8,10 @@ It uses `find` to search for music and `afplay` to play it. It looks at the file
 
 ## Installation
 
-[Download the latest version][latest] and unzip it.
+1. [Download the latest version][latest] and unzip it.
+2. Open the `play.sh` file in a text editor and change the path of the `MUSIC_DIR` variable to wherever your music files are stored.
 
-To easily run the script from anywhere, you can add an alias to it in your bash profile (located at `~/.bash_profile`; you can create it if it doesn't exist) like so:
+NOTE: To easily run the script from anywhere, you can add an alias to it in your bash profile (located at `~/.bash_profile`; you can create it if it doesn't exist) like so:
 
     alias play=/PATH/TO/play.sh
 
