@@ -30,13 +30,19 @@ then
 # choose which song to play
 # User can also enter '?' to choose one of the results at random
 else
+	echo "$lines songs found matching '$args':"
+	echo
 	echo "$songs" | nl | grep -i "$args"
-	read -p "Play song #" num
+	echo
+
+	read -p "Choose the song to be played ('?' for random selection): " num
 		if [ $num = "?" ]; then num=$[$RANDOM % $lines + 1]; fi
 		selection=$(echo "$songs" | sed -n "$num"p)
+
+	echo
 fi
 
 # Play the song in the background
 # Playback can be stopped using `killall -TERM afplay`
-echo "$selection"
+echo "Playing: ${selection#$MUSIC_DIR/}" | sed 's|/| › |g'
 afplay "$selection" &
