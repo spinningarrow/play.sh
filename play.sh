@@ -18,22 +18,25 @@ lines=$(echo "$songs" | wc -l | awk {'print $1'})
 if [ $chars -eq "0" ]
 then
 	echo "No songs found matching '$args'."
+	exit $?
 
-# Only one result; play it
+# Only one result
 elif [ $lines -eq "1" ]
 then
-	echo "$songs"
-	afplay "$(echo -n "$songs")" &
+	selection="$songs"
 
-# Multiple results; show line numbers in front of each result and prompt
-# the user to choose which song to play
+# Multiple results
+# Show line numbers in front of each result and prompt the user to
+# choose which song to play
 # User can also enter '?' to choose one of the results at random
 else
 	echo "$songs" | nl | grep -i "$args"
 	read -p "Play song #" num
 		if [ $num = "?" ]; then num=$[$RANDOM % $lines + 1]; fi
 		selection=$(echo "$songs" | sed -n "$num"p)
-		echo "$selection"
-		afplay "$selection" &
-
 fi
+
+# Play the song in the background
+# Playback can be stopped using `killall -TERM afplay`
+echo "$selection"
+afplay "$selection" &
