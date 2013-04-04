@@ -19,10 +19,14 @@ To easily run the script from anywhere, you can add an alias to it in your bash 
 If you added the alias to your shell profile, just type the following command:
 
     play <part of artist/album/song name>
-    
+
 Otherwise:
 
 1. Open Terminal and navigate to the folder where it was unzipped.
 2. Run `./play.sh <part of artist/album/song name>`
+
+To **stop** playback:
+
+    killall -TERM afplay
 
 [latest]: https://github.com/spinningarrow/play.sh/zipball/master
