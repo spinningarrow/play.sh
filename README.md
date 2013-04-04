@@ -2,9 +2,9 @@
 
 A simple shell script that searches for and plays songs from the command line in OS X. For times when you don't want to open iTunes just to play that one song you really want to listen to.
 
-![play.sh screenshot](https://lh5.googleusercontent.com/-fb0pTE8158A/UV227blOWwI/AAAAAAAAAh0/YAL6yT6_aZM/s873/play.sh.png)
+![play.sh screenshot](https://lh3.googleusercontent.com/-yOzA1RjrxIo/UV4NMKSAlgI/AAAAAAAAAiE/qyKAEG4WYcU/s733/play.sh_2.png)
 
-It uses `find` to search for music and `afplay` to play it. It looks at the file path when searching, so having the artist, album and song title in the path helps.
+It uses `find` to search for music and `afplay` to play it. It looks at the file path when searching so having the artist, album and song title in the path will help. In the screenshot above, the music files being displayed are organised like this on the hard drive: `<Artist>/<Album>/<Artist> - <Track number> <Track title>.mp3`.
 
 ## Installation
 

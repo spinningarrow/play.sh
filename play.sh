@@ -32,7 +32,7 @@ then
 else
 	echo "$lines songs found matching '$args':"
 	echo
-	echo "$songs" | nl | grep -i "$args"
+	echo "$songs" | while read song; do echo ${song#$MUSIC_DIR/}; done | sed 's:/: › :g' | nl | grep -i "$args"
 	echo
 
 	read -p "Choose the song to be played ('?' for random selection): " num
@@ -44,5 +44,5 @@ fi
 
 # Play the song in the background
 # Playback can be stopped using `killall -TERM afplay`
-echo "Playing: ${selection#$MUSIC_DIR/}" | sed 's|/| › |g'
+echo "Playing: ${selection#$MUSIC_DIR/}" | sed 's:/: › :g'
 afplay "$selection" &
