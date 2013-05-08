@@ -36,7 +36,14 @@ else
 	echo
 
 	read -p "Choose the song to be played ('?' for random selection): " num
-		if [ $num = "?" ]; then num=$[$RANDOM % $lines + 1]; fi
+		if [ -z "$num" ]
+		then
+			num=1 # Play first song if nothing was chosen
+		elif [ $num = "?" ]
+		then
+			num=$[$RANDOM % $lines + 1]
+		fi
+
 		selection=$(echo "$songs" | sed -n "$num"p)
 
 	echo
