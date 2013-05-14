@@ -36,25 +36,32 @@ else
 	echo
 
 	# Prompt the user to choose a song
-	read -p "Choose the song to be played ('?' for random selection): " num
+	while :
+	do
+		read -p "Choose the song to be played ('?' for random selection): " num
 
-	# If the user didn't provide an input, play the first song
-	if [ -z "$num" ]; then
-		num=1
+		# User provided no input - play the first song
+		if [ -z "$num" ]; then
+			num=1
+			break
 
-	# If the user enters a '?', choose a random song to play
-	elif [ $num = "?" ]; then
-		num=$[$RANDOM % $lines + 1]
+		# User entered '?' - choose a random song to play
+		elif [ $num = "?" ]; then
+			num=$[$RANDOM % $lines + 1]
+			break
 
-	# If the number is not within the range (or if it's something else),
-	# display an error
-	elif [[ ! ($num -ge 1 && $num -le $lines) ]]; then
-		echo "Incorrect input!" >&2
-		exit 1
-	fi
+		# User input is not within range (or it's something else) - ask them
+		# to try again
+		elif [[ ! ($num -ge 1 && $num -le $lines) ]]; then
+			echo "Incorrect input! Please try again."
+
+		# User input is a number within the range, let's get out of the loop
+		else
+			break
+		fi
+	done
 
 	selection=$(echo "$songs" | sed -n "$num"p)
-
 	echo
 fi
 
