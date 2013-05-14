@@ -35,16 +35,25 @@ else
 	echo "$songs" | while read song; do echo ${song#$MUSIC_DIR/}; done | sed 's:/: › :g' | nl | grep -i "$args"
 	echo
 
+	# Prompt the user to choose a song
 	read -p "Choose the song to be played ('?' for random selection): " num
-		if [ -z "$num" ]
-		then
-			num=1 # Play first song if nothing was chosen
-		elif [ $num = "?" ]
-		then
-			num=$[$RANDOM % $lines + 1]
-		fi
 
-		selection=$(echo "$songs" | sed -n "$num"p)
+	# If the user didn't provide an input, play the first song
+	if [ -z "$num" ]; then
+		num=1
+
+	# If the user enters a '?', choose a random song to play
+	elif [ $num = "?" ]; then
+		num=$[$RANDOM % $lines + 1]
+
+	# If the number is not within the range (or if it's something else),
+	# display an error
+	elif [[ ! ($num -ge 1 && $num -le $lines) ]]; then
+		echo "Incorrect input!" >&2
+		exit 1
+	fi
+
+	selection=$(echo "$songs" | sed -n "$num"p)
 
 	echo
 fi
