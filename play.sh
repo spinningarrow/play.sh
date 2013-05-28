@@ -2,7 +2,10 @@
 
 # The directory where you would like to search for music files; change
 # to wherever you keep your music
-MUSIC_DIR=~/Music/Music
+if [[ -z $MUSIC_DIR ]]
+then
+	MUSIC_DIR=~/Music
+fi
 
 # Get arguments passed in
 args="$@"
