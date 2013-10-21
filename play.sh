@@ -11,7 +11,7 @@ fi
 args="$@"
 
 # Find mp3 files that contain args
-songs=$(find -E $MUSIC_DIR -iregex ".*${args}.*(mp3|m4a|wav)")
+songs=$(find -E "$MUSIC_DIR" -iregex ".*${args}.*(mp3|m4a|wav)")
 
 # Count the number of files found
 chars=$(echo -n "$songs" | wc -m | awk {'print $1'})
