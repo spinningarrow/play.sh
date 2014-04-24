@@ -68,7 +68,6 @@ else
 	echo
 fi
 
-# Play the song in the background
-# Playback can be stopped using `killall -TERM afplay`
+# Play the song
 echo "Playing: ${selection#$MUSIC_DIR/}" | sed 's:/: › :g'
-afplay "$selection" &
+afplay "$selection"
